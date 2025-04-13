@@ -1,4 +1,6 @@
 MLOps-chest-cancer-classification
+
+
 This project focuses on building an end-to-end machine learning pipeline for chest cancer classification, leveraging MLflow and DVC for streamlined ML lifecycle management. The pipeline is deployed using GitHub and Docker, with the application hosted in a Flask environment.
 
 Key Components:
