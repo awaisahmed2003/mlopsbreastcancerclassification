@@ -1,91 +1,111 @@
-**MLOps-chest-cancer-classification**
+# MLOps Chest Cancer Classification
 
+This project implements an end-to-end machine learning pipeline for classifying chest cancer using image data. The pipeline is containerized using Docker, allowing easy local deployment and inference.
 
-This project focuses on building an end-to-end machine learning pipeline for chest cancer classification, leveraging MLflow and DVC for streamlined ML lifecycle management. The pipeline is deployed using GitHub and Docker, with the application hosted in a Flask environment.
+---
 
-**Key Components**
+## 🔹 Key Components
 
-Data Ingestion: Importing and preprocessing the dataset.
+- **Data Ingestion** – Load and preprocess image data from specified directories.
+- **Model Preparation** – Load and update a pre-trained CNN model.
+- **Training** – Train the model using a training-validation split.
+- **Evaluation** – Evaluate performance and save metrics.
+- **Prediction** – Run inference on new images using the trained model.
 
-Preparing Model: Feature engineering and selection.
+---
 
-Training Model: Model training and hyperparameter tuning.
+## 🔹 Workflow
 
-Model Evaluation: Evaluating model performance and generating metrics.
+1. Update `config.yaml` with directory paths and filenames.
+2. Update `params.yaml` to control hyperparameters like image size, batch size, and epochs.
+3. Update `entity` classes in `src/entity/`.
+4. Modify configuration manager in `src/configuration/`.
+5. Update components under `src/components/`.
+6. Adjust pipeline stages in `src/pipeline/`.
+7. Run `main.py` to execute the full training pipeline.
 
-Prediction: An interactive pipeline allowing users to make predictions based on the trained model.
+---
 
+## 🔹 Docker Deployment
 
+### Step 1: Build Docker Image
 
-**Workflows**
-
-Update config.yaml
-
-Update params.yaml
-
-Update the entity
-
-Update the configuration manager in src/config
-
-Update the components
-
-Update the pipeline
-
-Update main.py
-
-Update dvc.yaml
-
-
-
-**Prediction (Docker Local Deployment**)
-
-To allow anyone to run the model locally using Docker:
-
-Step 1: Build Docker Image
-bash
-Copy
-Edit
+```bash
 docker build -t chest-cancer-classifier .
-Step 2: Run Prediction on an Image
-bash
-Copy
-Edit
+```
+
+### Step 2: Predict Using an Image
+
+```bash
 docker run -v ${PWD}:/app chest-cancer-classifier python predict.py /app/sample.jpg
-Note: Replace sample.jpg with your desired image.
+```
 
+> Replace `sample.jpg` with your own image path.
 
+---
 
-**Classes**
+## 🔹 Classes
 
-The model currently supports 2 classes:
+This model currently supports **2 image classes**:
 
-malignant
+- `malignant`
+- `normal`
 
-normal
+### Folder Structure
 
-Your training data directory should be structured as follows:
-
-css
-Copy
-Edit
+```
 data/
 ├── malignant/
+│   ├── img1.jpg
+│   └── ...
 └── normal/
+    ├── img1.jpg
+    └── ...
+```
 
+---
 
-**To Train the Model**
+## 🔹 To Train the Model
 
-Run the following command to ingest data, train the model, and save the trained model to artifacts/:
-
-bash
-Copy
-Edit
+```bash
 docker run chest-cancer-classifier python main.py
-After Training, Run the Evaluation Pipeline
-bash
-Copy
-Edit
+```
+
+This will:
+- Ingest and preprocess data
+- Train the model
+- Save the trained model to `artifacts/`
+
+---
+
+## 🔹 Evaluate the Model
+
+```bash
 docker run chest-cancer-classifier python src/cnnClassifier/pipeline/stage_04_model_evaluation.py
-Feel free to adjust the instructions based on any further changes to your project structure or deployment preferences. Let me know if you need additional modifications!
+```
+
+Evaluation results will be saved to `scores.json`.
+
+---
+
+## 🔹 Output Files
+
+- `artifacts/` – Trained models and intermediate outputs
+- `scores.json` – Evaluation results and performance metrics
+
+---
+
+## 🔹 Requirements
+
+- Docker installed on your system
+- Dataset placed in the correct folder structure
+- Internet connection (for downloading pre-trained weights, if needed)
+
+---
+
+## 🔹 License
+
+This project is licensed under the MIT License.
+
 
 
