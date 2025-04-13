@@ -1,7 +1,10 @@
-MLOps-chest-cancer-classification
+**MLOps-chest-cancer-classification**
+
+
 This project focuses on building an end-to-end machine learning pipeline for chest cancer classification, leveraging MLflow and DVC for streamlined ML lifecycle management. The pipeline is deployed using GitHub and Docker, with the application hosted in a Flask environment.
 
-Key Components
+**Key Components**
+
 Data Ingestion: Importing and preprocessing the dataset.
 
 Preparing Model: Feature engineering and selection.
@@ -12,7 +15,10 @@ Model Evaluation: Evaluating model performance and generating metrics.
 
 Prediction: An interactive pipeline allowing users to make predictions based on the trained model.
 
-Workflows
+
+
+**Workflows**
+
 Update config.yaml
 
 Update params.yaml
@@ -29,7 +35,10 @@ Update main.py
 
 Update dvc.yaml
 
-Prediction (Docker Local Deployment)
+
+
+**Prediction (Docker Local Deployment**)
+
 To allow anyone to run the model locally using Docker:
 
 Step 1: Build Docker Image
@@ -44,7 +53,10 @@ Edit
 docker run -v ${PWD}:/app chest-cancer-classifier python predict.py /app/sample.jpg
 Note: Replace sample.jpg with your desired image.
 
-Classes
+
+
+**Classes**
+
 The model currently supports 2 classes:
 
 malignant
@@ -59,7 +71,10 @@ Edit
 data/
 ├── malignant/
 └── normal/
-To Train the Model
+
+
+**To Train the Model**
+
 Run the following command to ingest data, train the model, and save the trained model to artifacts/:
 
 bash
