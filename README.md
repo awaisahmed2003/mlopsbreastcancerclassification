@@ -1,2 +1,0 @@
-# mlopsbreastcancerclassification
-Breast Cancer Classification
